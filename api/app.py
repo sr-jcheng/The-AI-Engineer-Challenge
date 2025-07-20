@@ -27,7 +27,7 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     developer_message: str  # Message from the developer/system
     user_message: str      # Message from the user
-    model: Optional[str] = "gpt-4.1-mini"  # Optional model selection with default
+    model: Optional[str] = "gpt-4o-mini"  # Optional model selection with default
     api_key: str          # OpenAI API key for authentication
 
 # Define the main chat endpoint that handles POST requests
@@ -41,7 +41,7 @@ async def chat(request: ChatRequest):
         async def generate():
             # Create a streaming chat completion request
             stream = client.chat.completions.create(
-                model=request.model,
+                model=request.model or "gpt-4o-mini",
                 messages=[
                     {"role": "developer", "content": request.developer_message},
                     {"role": "user", "content": request.user_message}

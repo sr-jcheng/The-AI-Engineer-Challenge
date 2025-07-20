@@ -1,10 +1,13 @@
 {
     "version": 2,
     "builds": [
-      { "src": "frontend/package.json", "use": "@vercel/next" },
       { 
         "src": "api/app.py",
         "use": "@vercel/python"
+      },
+      {
+        "src": "frontend/index.html",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
